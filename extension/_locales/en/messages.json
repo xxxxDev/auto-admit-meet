@@ -1,0 +1,5 @@
+{
+    "name": { "message": "Auto Admit for Google Meet" },
+    "description": { "message": "Admit everyone who asks to join your Google Meet call, and open Companion mode in one click. V-AX (v-ax.com)" },
+    "actionTitle": { "message": "Open this call in Companion mode" }
+}
