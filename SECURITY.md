@@ -1,6 +1,6 @@
 # Security
 
-## What this extension can see and do
+## What Auto Admit for Google Meet can see and do
 
 It has no server and no analytics, and it sends nothing to its authors. It stores nothing.
 
@@ -13,6 +13,10 @@ It admits everyone who asks to join, and that includes people you don't know if 
 
 ## Reporting a vulnerability
 
-Please don't open a public issue for a security problem. Use GitHub's **Report a vulnerability** button on this repository, with steps to reproduce and the version you use.
+Please do not open a public issue for a security problem. Email [support@v-ax.com](mailto:support@v-ax.com) instead. You can also use GitHub's **Report a vulnerability** button on this repository.
 
-We will acknowledge the report, work on a fix, and credit you in the release notes unless you prefer otherwise.
+Include Auto Admit for Google Meet, the version or commit, the relevant platform, minimal steps to reproduce, and the expected and observed results. Use fictional data where possible and redact sensitive information from errors or screenshots.
+
+Do not send passwords, tokens, private keys, account data, or raw private logs. Include only the information needed to reproduce the problem.
+
+For ordinary usage questions and non-sensitive bugs, use this repository's issue tracker.

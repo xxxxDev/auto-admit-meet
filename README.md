@@ -53,16 +53,19 @@ To run it from the source instead:
 - It works only while the Meet tab is open, and only for someone who is allowed to admit people.
 - It reads the text of Meet's buttons, so a change to Meet can stop it working until the extension is updated.
 - Admitting works on Meet pages in English, Traditional Chinese, Simplified Chinese and Japanese. Companion mode works in English, Traditional Chinese and Japanese.
-- It isn't made by or affiliated with Google.
+
+## Privacy and permissions
+
+Auto Admit for Google Meet has no server and no analytics, and it sends nothing to its authors. It stores nothing. On Meet it reads only the text of the page's buttons, to find the ones it presses. The full [privacy policy](PRIVACY.md) is in this repository and at https://v-ax.com/privacy/auto-admit-meet/. [SECURITY.md](SECURITY.md) explains each permission.
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). A new Meet language is usually a one-line change.
 
-## Privacy
-
-Auto Admit for Google Meet has no server and no analytics, and it sends nothing to its authors. It stores nothing. On Meet it reads only the text of the page's buttons, to find the ones it presses. The full [privacy policy](PRIVACY.md) is in this repository and at https://v-ax.com/privacy/auto-admit-meet/. [SECURITY.md](SECURITY.md) explains each permission.
-
 ## License
 
 The code is under the [MIT License](LICENSE). The icon isn't: see [BRAND.md](BRAND.md).
+
+Auto Admit for Google Meet is an independent project. It is not made by, affiliated with or endorsed by Google. Google Meet and Chrome are trademarks of Google LLC.
+
+Made by [V-AX](https://v-ax.com).

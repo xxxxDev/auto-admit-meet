@@ -53,16 +53,19 @@
 - 只有 Meet 分頁開著、而且你有權限接受加入者時才有作用。
 - 它靠 Meet 按鈕上的文字辨識，Meet 改版可能讓它失效，要等擴充功能更新。
 - 自動接受支援英文、繁體中文、簡體中文和日文的 Meet 頁面。夥伴模式支援英文、繁體中文和日文。
-- 這不是 Google 開發的產品，也和 Google 沒有關係。
+
+## 隱私與權限
+
+線上會議自動接受工具沒有伺服器，也沒有使用分析，不會傳任何資料給作者，也不儲存任何資料。在 Meet 上只讀取網頁按鈕的文字，用來找到要按的按鈕。完整內容請看[隱私權政策](PRIVACY.md#繁體中文)，也公布在 https://v-ax.com/privacy/auto-admit-meet/。每項權限的用途請看 [SECURITY.md](SECURITY.md)。
 
 ## 參與貢獻
 
 請見 [CONTRIBUTING.md](CONTRIBUTING.md)。支援新的 Meet 語言通常只要改一行。
 
-## 隱私
-
-線上會議自動接受工具沒有伺服器，也沒有使用分析，不會傳任何資料給作者，也不儲存任何資料。在 Meet 上只讀取網頁按鈕的文字，用來找到要按的按鈕。完整內容請看[隱私權政策](PRIVACY.md#繁體中文)，也公布在 https://v-ax.com/privacy/auto-admit-meet/。每項權限的用途請看 [SECURITY.md](SECURITY.md)。
-
 ## 授權
 
-程式碼採 [MIT 授權](LICENSE)。圖示不在此授權內，請見 [BRAND.md](BRAND.md)。
+程式碼以 [MIT License](LICENSE) 釋出。圖示不在此授權內，見 [BRAND.md](BRAND.md)。
+
+線上會議自動接受工具是獨立專案，並非由 Google 製作，也與其沒有關係或背書。Google Meet 和 Chrome 是 Google LLC 的商標。
+
+由 [V-AX](https://v-ax.com) 製作。
