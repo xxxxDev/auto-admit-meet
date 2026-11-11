@@ -7,4 +7,6 @@ mkdir -p dist
 rm -f "dist/auto-admit-meet-$version.zip"
 cd extension
 zip -qr -X "../dist/auto-admit-meet-$version.zip" . -x '.*'
+cd ..
+zip -q -X "dist/auto-admit-meet-$version.zip" LICENSE BRAND.md
 echo "dist/auto-admit-meet-$version.zip"
