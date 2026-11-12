@@ -18,20 +18,63 @@ function findButtons(matches) {
 }
 
 let lastOpenedWaitingList = 0;
+let lastAdmitted = 0;
+// Set only while the list is open because this extension opened it, so a list the user
+// opened is never closed.
+let openedByUs = false;
+let panelCloseButton = null;
+let closeButtonsBefore = [];
+
+// The panel's close button shows the icon name "close" in every interface language.
+const closeButtons = () => findButtons((label) => label === 'close');
+
+// The nearest close button around the admit button is the panel's, so other close
+// buttons on the page are left alone.
+function closeButtonAround(element) {
+    for (let node = element.parentElement; node && node !== document.body; node = node.parentElement) {
+        const [close] = [...node.querySelectorAll('button, [role="button"]')]
+            .filter((button) => buttonLabels(button).includes('close'));
+        if (close) return close;
+    }
+    return null;
+}
+
+function closeListWeOpened() {
+    const close = panelCloseButton && panelCloseButton.isConnected
+        ? panelCloseButton
+        // The list opened without anyone to admit, so its close button is the one that appeared.
+        : closeButtons().find((button) => !closeButtonsBefore.includes(button));
+    if (close) close.click();
+    openedByUs = false;
+    panelCloseButton = null;
+    closeButtonsBefore = [];
+}
 
 function autoAdmit() {
+    const now = Date.now();
     const startsWithWord = (words) => (label) => words.some((word) => label.startsWith(word));
     const admitButtons = findButtons(startsWithWord(ADMIT_WORDS));
-    admitButtons.forEach((button) => button.click());
     findButtons(startsWithWord(VIEW_ALL_WORDS)).forEach((button) => button.click());
-    // A second click would close the list while it's still loading.
-    if (admitButtons.length === 0 && Date.now() - lastOpenedWaitingList > 5000) {
-        const [waiting] = findButtons((label) => WAITING_PATTERN.test(label));
-        if (waiting) {
-            waiting.click();
-            lastOpenedWaitingList = Date.now();
-        }
+    if (admitButtons.length > 0) {
+        if (openedByUs) panelCloseButton = closeButtonAround(admitButtons[0]) || panelCloseButton;
+        admitButtons.forEach((button) => button.click());
+        lastAdmitted = now;
+        return;
     }
+    if (openedByUs) {
+        // Everyone in the list is admitted, so it goes back to how the user had it.
+        if (lastAdmitted > lastOpenedWaitingList || now - lastOpenedWaitingList > 5000) closeListWeOpened();
+        return;
+    }
+    // Meet keeps showing the waiting button for a few seconds after someone is admitted, and
+    // a second click would close the list while it's still loading.
+    if (now - lastAdmitted < 12000 || now - lastOpenedWaitingList < 5000) return;
+    const [waiting] = findButtons((label) => WAITING_PATTERN.test(label));
+    if (!waiting) return;
+    closeButtonsBefore = closeButtons();
+    waiting.click();
+    lastOpenedWaitingList = now;
+    openedByUs = true;
 }
 
 function openCompanionMode() {
