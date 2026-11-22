@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <img src=".github/assets/screens/admit-en.png" alt="The Meet people panel with a guest waiting to be admitted">
+  <img src=".github/assets/screens/admit-en.png" alt="The card on Meet's guest waiting button, with Admit, while the chat panel stays open">
 </p>
 
 ---

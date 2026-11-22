@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <img src=".github/assets/screens/admit-zh-TW.png" alt="Meet 參與者面板，有一位訪客正在等待加入">
+  <img src=".github/assets/screens/admit-zh-TW.png" alt="Meet「正在等待」按鈕的小框，有接受鈕，聊天面板仍開著">
 </p>
 
 ---
