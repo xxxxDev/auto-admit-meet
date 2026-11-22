@@ -27,7 +27,7 @@ It admits everyone who asks. Turn it off for a call where you want to choose who
 
 ## Features
 
-- **Admits one person or many.** It opens the waiting list when it needs to, admits a single person or several, then closes the list again. A list you opened yourself stays open.
+- **Admits one person or many.** It admits from the small card on Meet's "guest waiting" button, so the side panel you have open, such as the chat, stays as it is. If that card doesn't show an admit button, it opens the waiting list instead and closes it again afterwards. A list you opened yourself stays open.
 - **Opens Companion mode.** Click the icon on a call to open it in a new tab in Companion mode.
 - **Runs only on Meet.** It works on `meet.google.com` and does nothing elsewhere.
 - **Sends nothing anywhere.** It has no server and no analytics.
