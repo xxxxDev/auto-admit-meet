@@ -26,6 +26,14 @@ let hoverTries = 0;
 let openedByUs = false;
 let panelCloseButton = null;
 let closeButtonsBefore = [];
+// Side panels the user had open (such as the chat) before the list replaced them.
+let panelsBefore = [];
+// Right after a meeting starts Meet may be slow to show the card, so it is pointed at for
+// this many checks before the waiting list is opened instead.
+const HOVER_TRIES = 8;
+
+// Meet marks each side panel's toolbar button with data-panel-id and aria-expanded.
+const openPanelButtons = () => [...document.querySelectorAll('button[data-panel-id][aria-expanded="true"]')];
 
 // The panel's close button shows the icon name "close" in every interface language.
 const closeButtons = () => findButtons((label) => label === 'close');
@@ -56,9 +64,17 @@ function closeListWeOpened() {
         // The list opened without anyone to admit, so its close button is the one that appeared.
         : closeButtons().find((button) => !closeButtonsBefore.includes(button));
     if (close) close.click();
+    // Meet shows one side panel at a time, so the one the list replaced is opened again.
+    const reopen = panelsBefore;
+    // A panel the user opened meanwhile is left as it is.
+    setTimeout(() => {
+        if (openPanelButtons().length > 0) return;
+        reopen.filter((button) => button.isConnected).forEach((button) => button.click());
+    }, 600);
     openedByUs = false;
     panelCloseButton = null;
     closeButtonsBefore = [];
+    panelsBefore = [];
 }
 
 function autoAdmit() {
@@ -70,9 +86,11 @@ function autoAdmit() {
         admitButtons.forEach((button) => button.click());
         lastAdmitted = now;
         hoverTries = 0;
+        if (hovered) pointAt(hovered, false);
+        hovered = null;
         return;
     }
-    if (hovered) {
+    if (hovered && (hoverTries >= HOVER_TRIES || !hovered.isConnected)) {
         // The card this extension showed goes away again.
         pointAt(hovered, false);
         hovered = null;
@@ -87,10 +105,13 @@ function autoAdmit() {
     if (now - lastAdmitted < 12000 || now - lastOpenedWaitingList < 5000) return;
     const [waiting] = findButtons((label) => WAITING_PATTERN.test(label));
     if (!waiting) {
+        if (hovered) pointAt(hovered, false);
+        hovered = null;
         hoverTries = 0;
         return;
     }
-    if (hoverTries < 2) {
+    if (hoverTries < HOVER_TRIES) {
+        // The pointer stays on the button between checks, the way a person's mouse would.
         hovered = waiting.querySelector('[jsaction*="pointerenter"]') || waiting;
         pointAt(hovered, true);
         hoverTries += 1;
@@ -99,6 +120,7 @@ function autoAdmit() {
     // The card showed no admit button, so the waiting list is opened instead.
     hoverTries = 0;
     closeButtonsBefore = closeButtons();
+    panelsBefore = openPanelButtons();
     waiting.click();
     lastOpenedWaitingList = now;
     openedByUs = true;
